@@ -1,0 +1,14 @@
+{
+  "about_url": "",
+  "license_url": "/LICENSE",
+  "assets": {},
+  "name": "Social feed topic layout",
+  "component": true,
+  "modifiers": {
+    "topic_thumbnail_sizes": [
+      [400, 400],
+      [800, 800]
+    ],
+    "serialize_topic_excerpts": true
+  }
+}

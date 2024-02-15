@@ -1,0 +1,233 @@
+// layout
+
+.topic-list {
+  .topic-list-header {
+    display: none;
+  }
+}
+
+.topic-list-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  .topic-list-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'op category'
+      'title title'
+      'thumbnail thumbnail'
+      'excerpt excerpt'
+      'tags tags'
+      'likes replies';
+    justify-items: start;
+  }
+
+  .link-bottom-line,
+  .main-link {
+    display: contents;
+  }
+
+  .views,
+  .posters,
+  .age {
+    display: none;
+  }
+
+  .topic-thumbnail {
+    grid-area: thumbnail;
+    min-width: 0;
+    width: 100%;
+    max-height: 15em;
+    object-fit: cover;
+  }
+
+  .link-bottom-line {
+    .badge-category__wrapper {
+      grid-area: category;
+    }
+
+    .discourse-tags {
+      display: none;
+    }
+  }
+
+  .discourse-tags {
+    grid-area: tags;
+  }
+
+  .topic-list-op {
+    grid-area: op;
+  }
+
+  .topic-likes {
+    grid-area: likes;
+    width: 100%;
+  }
+
+  .topic-excerpt {
+    grid-area: excerpt;
+  }
+
+  .link-top-line {
+    display: flex;
+    align-items: first baseline;
+    grid-area: title;
+    width: 100%;
+
+    .raw-link {
+      display: block;
+    }
+  }
+
+  .posts-map {
+    grid-area: replies;
+    display: flex;
+    justify-content: end;
+    gap: 0.5em;
+    width: 100%;
+    padding: 0;
+    .badge-posts {
+      padding: 0;
+    }
+  }
+}
+
+.topic-list-op {
+  > a {
+    display: grid;
+    grid-template-areas: 'avatar username' 'avatar date';
+    grid-template-rows: auto 1fr;
+    gap: 0.25em 0.5em;
+  }
+  .avatar {
+    grid-area: avatar;
+  }
+  .username {
+    grid-area: username;
+  }
+  .relative-date {
+    grid-area: date;
+  }
+}
+
+// presentation
+
+.topic-list {
+  .topic-list-body {
+    border: none;
+  }
+  .topic-list-item {
+    --custom-list-item-space: 0.5rem;
+    padding: var(--custom-list-item-space);
+    border: 1px solid var(--primary-low);
+  }
+
+  // grouped elements by position relative to container
+
+  //  top
+  .topic-list-op,
+  .badge-category__wrapper {
+    padding-top: var(--custom-list-item-space);
+  }
+
+  // right
+  .badge-category__wrapper,
+  .posts-map.posts,
+  .topic-excerpt,
+  .main-link a.title,
+  .discourse-tags {
+    box-sizing: border-box;
+    padding-right: var(--custom-list-item-space);
+  }
+
+  // bottom
+  .posts-map.posts,
+  .topic-likes {
+    padding-top: var(--custom-list-item-space);
+    padding-bottom: var(--custom-list-item-space);
+    border-top: 1px solid var(--primary-low);
+    margin-top: var(--custom-list-item-space);
+    font-size: var(--font-down-1);
+  }
+
+  // left
+  .topic-list-op,
+  .raw-topic-link,
+  .topic-excerpt,
+  .topic-likes,
+  .link-top-line,
+  .discourse-tags {
+    box-sizing: border-box;
+    padding-left: var(--custom-list-item-space);
+  }
+
+  // general appearance
+
+  .topic-likes {
+    pointer-events: none; // helps work with discourse-clickable-topic
+    color: var(--primary-medium);
+    .d-icon {
+      color: var(--love);
+    }
+  }
+
+  .posts-map.posts {
+    align-items: center;
+    button {
+      font-weight: normal;
+      flex-direction: row-reverse;
+    }
+  }
+
+  .topic-list-op {
+    font-size: var(--font-down-1);
+    .avatar {
+      width: 3rem;
+      height: 3rem;
+    }
+    .username {
+      font-weight: bold;
+      line-height: var(--line-height-small);
+    }
+    .relative-date {
+      font-size: var(--font-down-1);
+      color: var(--primary-medium);
+    }
+  }
+
+  .main-link a.title {
+    padding-bottom: 0;
+    margin-bottom: var(--custom-list-item-space);
+  }
+
+  .topic-thumbnail {
+    pointer-events: none; // helps work with discourse-clickable-topic
+    &:not([src='']) {
+      margin: calc(var(--custom-list-item-space) / 2) 0
+        calc(var(--custom-list-item-space) * 2);
+    }
+    [src=''] {
+      display: none;
+    }
+  }
+
+  .topic-excerpt {
+    margin-top: 0;
+    padding-bottom: var(--custom-list-item-space);
+    pointer-events: none; // helps work with discourse-clickable-topic
+  }
+
+  .visited .topic-excerpt {
+    color: var(--primary-medium);
+  }
+
+  .discourse-tags {
+    font-size: var(--font-down-1);
+    margin-bottom: calc(var(--custom-list-item-space) / 2);
+    .discourse-tag {
+      color: var(--tertiary);
+    }
+  }
+}

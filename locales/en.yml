@@ -1,0 +1,3 @@
+en:
+  theme_metadata:
+    description: 'This theme adjusts the look of topics to mirror a more social-like layout with excerpts and images. Strongly recommend using with https://github.com/discourse/discourse-clickable-topic so the entire box clicks through to the topic.'
